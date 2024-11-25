@@ -104,7 +104,7 @@ export default function QuizPage() {
         />
       </div>
       <button
-        className="fixed bottom-4 right-4 bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+        className="fixed bottom-4 right-4 bg-teal-500 hover:bg-teal-600 text-white p-3 rounded-full shadow-lg size-12"
         onClick={toggleChatbot}
         aria-label="Toggle Chatbot"
       >

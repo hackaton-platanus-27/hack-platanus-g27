@@ -12,7 +12,7 @@ export default function PastelButton({
       className={`px-6 py-2 mt-10 text-white rounded-lg focus:outline-none transition duration-300 ${
         disabled
           ? "bg-gray-400 cursor-not-allowed"
-          : "bg-blue-500 hover:bg-blue-600"
+          : "bg-teal-500 hover:bg-teal-600"
       }`}
       onClick={onClick}
       disabled={disabled}

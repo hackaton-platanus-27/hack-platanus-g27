@@ -26,14 +26,15 @@ export default function QuestionBox({
   submitted,
 }: QuestionBoxProps) {
   return (
-    <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-x-4 sm:space-y-0">
-      <div className="flex flex-col">
-        <h1 className="text-2xl font-bold mb-5">Pregunta {questionNumber}</h1>
-        <div className="w-80 p-4 min-h-30 max-h-72 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 rounded-xl">
-          <h2 className="text-lg text-left w-full">{question.p}</h2>
+    <div className="grid grid-cols-2 max-w-5xl w-full space-y-4 px-4">
+      <div className="col-span-2">
+        <h1 className="text-2xl font-bold text-gray-700 mb-5">Pregunta {questionNumber}</h1>
+        <div className="scrollbar-track-gray-100 rounded-xl">
+          <h2 className="text-lg text-left font-light">{question.p}</h2>
         </div>
       </div>
-      <div className="w-80 space-y-6 items-center justify-center">
+
+      <div className="w-full lg:w-80 col-span-2  space-y-6 items-center justify-center">
         {Object.keys(question.r).map((key, index) => {
           const optionKey = key as keyof typeof question.r;
 

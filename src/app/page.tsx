@@ -18,7 +18,7 @@ const HomePage: React.FC = () => {
       </Head>
       <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 space-y-12 bg-gradient-to-tr from-blue-100 via-purple-100 to-yellow-100 rounded-2xl">
         <main className="flex flex-col items-center text-center px-4 py-4 w-full max-w-6xl rounded-xl">
-          <h1 className="text-2xl lg:text-4xl max-w-2xl font-bold text-gray-700 mb-4">
+          <h1 className="text-2xl lg:text-3xl max-w-2xl font-bold text-gray-700 mb-4">
             La práctica hace al maestro 💡 y nosotros hacemos la práctica 💪✨
           </h1>
           <p className="text-gray-600 mb-8">

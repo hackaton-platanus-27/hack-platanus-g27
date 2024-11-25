@@ -71,16 +71,19 @@ const Chatbot: React.FC<ChatbotProps> = ({
 
   return (
     <div
-      className={`fixed top-0 right-0 h-full w-full md:w-96 bg-white shadow-lg transform transition-transform duration-300 ${
+      className={`fixed top-0 right-0 h-full w-full md:w-96 bg-white/40 backdrop-blur shadow-lg transform transition-transform duration-300 ${
         isOpen ? "translate-x-0" : "translate-x-full"
       }`}
       ref={panelRef}
     >
       {/* Chatbot Header */}
-      <div className="flex items-center justify-between p-4 bg-gray-200">
-        <h2 className="text-lg font-bold">Tutor Personal</h2>
+      <div className="flex justify-between p-4 bg-gradient-to-tr from-blue-100 via-purple-100 to-yellow-100">
+        <div>
+          <h2 className="font-bold text-gray-700">IA generativa 🤖</h2>
+          <small className="text-xs">Powered by <b>Tres elevado a tres</b></small>
+        </div>
         <button
-          className="text-gray-600 hover:text-gray-800"
+          className="text-gray-600 hover:text-gray-800 hover:border transition-all duration-200 size-8 rounded-full"
           onClick={onClose}
           aria-label="Close Chatbot"
         >
@@ -90,7 +93,7 @@ const Chatbot: React.FC<ChatbotProps> = ({
       {/* Chatbot Body */}
       <div
         className="p-4 overflow-y-auto flex-1 h-full"
-        style={{ maxHeight: "calc(100% - 128px)" }}
+        style={{ maxHeight: "calc(100% - 168px)" }}
       >
         {/* Render messages */}
         {messages.map((message, index) => (
@@ -101,10 +104,10 @@ const Chatbot: React.FC<ChatbotProps> = ({
             }`}
           >
             <div
-              className={`px-4 py-2 rounded-lg max-w-xs ${
+              className={`px-4 py-2 rounded-xl max-w-xs font-medium text-sm ${
                 message.sender === "user"
-                  ? "bg-blue-500 text-white"
-                  : "bg-gray-200 text-gray-800"
+                  ? "bg-teal-500 text-white"
+                  : "bg-gradient-to-tr from-blue-100 via-purple-100 to-yellow-100 text-gray-700"
               }`}
             >
               {message.text}
@@ -114,10 +117,10 @@ const Chatbot: React.FC<ChatbotProps> = ({
         <div ref={messagesEndRef}></div>
       </div>
       {/* Chatbot Footer */}
-      <div className="p-4 bg-gray-200 flex items-center">
+      <div className="p-4 flex items-center">
         <input
           type="text"
-          className="flex-grow px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="flex-grow px-3 py-2 border font-medium text-gray-700 rounded bg-transparent outline-none"
           placeholder="¿Tienes alguna duda?"
           value={inputValue}
           onChange={handleInputChange}
