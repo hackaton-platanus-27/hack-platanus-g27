@@ -4,23 +4,18 @@ import { useState, useEffect } from "react";
 import QuestionBox from "@/components/QuestionBox";
 import NextButton from "@/components/NextButton";
 import SendButton from "@/components/SendButton";
-import Chatbot, { ChatMessage } from "@/components/Chatbot";
+import Chatbot from "@/components/Chatbot";
 
 export default function QuizPage() {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [data, setData] = useState<any>(null);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
-  const [selectedOptions, setSelectedOptions] = useState<{
-    [key: number]: number | null;
-  }>({});
+  const [selectedOptions, setSelectedOptions] = useState<{ [key: number]: number | null }>({});
   const [submitted, setSubmitted] = useState<boolean>(false);
   const [isChatbotOpen, setIsChatbotOpen] = useState<boolean>(false);
-  const [messages, setMessages] = useState<ChatMessage[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const url =
-        "https://v7574x625rfp77q6wjzpyk6s7i0cdrho.lambda-url.us-east-1.on.aws/";
+      const url = "https://v7574x625rfp77q6wjzpyk6s7i0cdrho.lambda-url.us-east-1.on.aws/";
       try {
         const response = await fetch(url);
         const jsonData = await response.json();
@@ -56,32 +51,12 @@ export default function QuizPage() {
     setIsChatbotOpen(!isChatbotOpen);
   };
 
-  const handleSendMessage = (message: string) => {
-    // Add user's message
-    setMessages((prevMessages) => [
-      ...prevMessages,
-      { sender: "user", text: message },
-    ]);
-  };
-
-  const handleReceiveResponse = (response: string) => {
-    setMessages((prevMessages) => [
-      ...prevMessages,
-      { sender: "bot", text: response },
-    ]);
-  };
-
-  const handleSessionReceived = (sessionId: string) => {
-    console.log({ sessionId });
-  };
-
   if (!data) {
     return <div>Loading...</div>;
   }
 
   const currentQuestion = data.preguntas[currentQuestionIndex];
   const currentSelectedOption = selectedOptions[currentQuestionIndex];
-
   const currentSelectedOptionLetter = mapOptionToLetter(currentSelectedOption);
 
   return (
@@ -113,18 +88,14 @@ export default function QuizPage() {
       <Chatbot
         isOpen={isChatbotOpen}
         onClose={toggleChatbot}
-        messages={messages}
-        onSendMessage={handleSendMessage}
-        onReceiveResponse={handleReceiveResponse}
-        onSessionReceived={handleSessionReceived}
-        userAnswer={currentSelectedOptionLetter}
-        questionData={currentQuestion}
+        currentQuestion={currentQuestion}
       />
     </div>
   );
 }
 
 const mapOptionToLetter = (optionIndex?: number | null): string | undefined => {
-  if (!optionIndex) return;
-  return String.fromCharCode(96 + optionIndex);
+  if (optionIndex === null || optionIndex === undefined) return;
+  return String.fromCharCode(96 + optionIndex); // Convierte el índice en letra
 };
+
